@@ -6,6 +6,7 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import com.sun.jersey.spi.container.servlet.ServletContainer;
 import com.yammer.metrics.guice.InstrumentationModule;
 import com.yammer.metrics.jersey.InstrumentedResourceMethodDispatchAdapter;
 import com.yammer.metrics.reporting.MetricsServlet;
@@ -44,12 +45,13 @@ public class GuiceConfig extends GuiceServletContextListener {
             // Set init params for Jersey
             Map<String, String> params = new HashMap<String, String>();
             params.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
+            params.put("com.sun.jersey.config.feature.FilterForwardOn404", "true"); // allow static resources
             // optional
             //params.put("com.sun.jersey.config.property.packages", "com.example.resource");
             //params.put("com.sun.jersey.config.feature.Trace", "true");
 
             // Route all requests through GuiceContainer
-            serve("/*").with(GuiceContainer.class, params);
+            filter("/*").through(GuiceContainer.class, params);
         }
     }
 }
