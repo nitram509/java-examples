@@ -6,7 +6,6 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
-import com.sun.jersey.spi.container.servlet.ServletContainer;
 import com.yammer.metrics.guice.InstrumentationModule;
 import com.yammer.metrics.jersey.InstrumentedResourceMethodDispatchAdapter;
 import com.yammer.metrics.reporting.MetricsServlet;
@@ -26,12 +25,13 @@ public class GuiceConfig extends GuiceServletContextListener {
         @Override
         protected void configureServlets() {
             install(new ExampleModule());
+            install(new AtmosphereModule());
             install(new InstrumentationModule());
-            install(new MyServletModule());
+            install(new MainServletModule());
         }
     }
 
-    private static class MyServletModule extends ServletModule {
+    private static class MainServletModule extends ServletModule {
         @Override
         protected void configureServlets() {
             // Bind metrics' resources

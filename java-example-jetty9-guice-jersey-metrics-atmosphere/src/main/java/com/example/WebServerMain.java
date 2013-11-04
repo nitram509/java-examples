@@ -3,6 +3,7 @@ package com.example;
 import com.example.module.GuiceConfig;
 import com.google.inject.servlet.GuiceFilter;
 import org.atmosphere.cpr.AtmosphereServlet;
+import org.atmosphere.guice.AtmosphereGuiceServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -25,9 +26,6 @@ public class WebServerMain {
 
         handler.addEventListener(new GuiceConfig());
         handler.addFilter(GuiceFilter.class, "/*", allOf(DispatcherType.class));
-
-        ServletHolder atmosphereServlet = handler.addServlet(AtmosphereServlet.class, "/websocket-example/*");
-        atmosphereServlet.setInitParameter("org.atmosphere.cpr.CometSupport", "org.atmosphere.container.Jetty9AsyncSupportWithWebSocket");
 
         ServletHolder servletHolder = handler.addServlet(DefaultServlet.class, "/");
         servletHolder.setInitParameter("resourceBase","src/main/webapp");

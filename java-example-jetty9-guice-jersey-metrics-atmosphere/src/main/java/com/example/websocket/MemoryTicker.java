@@ -19,7 +19,7 @@ public class MemoryTicker {
     private static final Logger log = LoggerFactory.getLogger(MemoryTicker.class);
 
     @Inject
-    MemoryTickerService memoryTickerService;
+    private MemoryTickerService memoryTickerService;
 
     @Ready
     public final void onReady(final AtmosphereResource resource){

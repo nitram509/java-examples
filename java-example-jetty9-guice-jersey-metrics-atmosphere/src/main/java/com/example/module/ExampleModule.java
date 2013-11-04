@@ -10,6 +10,5 @@ public class ExampleModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(FooResource.class).in(Singleton.class);
-        bind(MemoryTickerService.class).in(Singleton.class);
     }
 }
