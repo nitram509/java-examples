@@ -1,5 +1,6 @@
 package com.example.websocket;
 
+import com.example.service.MemoryTickerService;
 import org.atmosphere.config.service.Disconnect;
 import org.atmosphere.config.service.ManagedService;
 import org.atmosphere.config.service.Message;
@@ -9,15 +10,20 @@ import org.atmosphere.cpr.AtmosphereResourceEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import java.io.IOException;
 
-@ManagedService(path = "/websocket-example")
-public class MemoryTickerWebsocketService {
-    private static final Logger log = LoggerFactory.getLogger(MemoryTickerWebsocketService.class);
+@ManagedService(path = "/websocket-example/memoryTicker")
+public class MemoryTicker {
+
+    private static final Logger log = LoggerFactory.getLogger(MemoryTicker.class);
+
+    @Inject
+    MemoryTickerService memoryTickerService;
 
     @Ready
-    public final void onReady(final AtmosphereResource r){
-        log.info("Browser {} connected.", r.uuid());
+    public final void onReady(final AtmosphereResource resource){
+        log.info("Browser {} connected.", resource.uuid());
     }
 
     @Disconnect

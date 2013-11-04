@@ -26,7 +26,8 @@ public class WebServerMain {
         handler.addEventListener(new GuiceConfig());
         handler.addFilter(GuiceFilter.class, "/*", allOf(DispatcherType.class));
 
-        handler.addServlet(AtmosphereServlet.class, "/websocket-example/*");
+        ServletHolder atmosphereServlet = handler.addServlet(AtmosphereServlet.class, "/websocket-example/*");
+        atmosphereServlet.setInitParameter("org.atmosphere.cpr.CometSupport", "org.atmosphere.container.Jetty9AsyncSupportWithWebSocket");
 
         ServletHolder servletHolder = handler.addServlet(DefaultServlet.class, "/");
         servletHolder.setInitParameter("resourceBase","src/main/webapp");
