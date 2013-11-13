@@ -4,7 +4,20 @@
     border: 1px solid #CCC;
 
     height: 400px;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+
+    padding: 5px;
+}
+
+.memoryTickerContent {
+    background: #dff0d8;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
 
     padding: 5px;
 }
