@@ -1,7 +1,11 @@
-.time {
-  color: lightgray;
+.chatContent {
+    background: #ddd;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+
+    height: 400px;
+    overflow: scroll;
+
+    padding: 5px;
 }
 
-.author {
-  font-weight: bold;
-}
